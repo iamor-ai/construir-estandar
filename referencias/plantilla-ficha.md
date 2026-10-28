@@ -11,7 +11,7 @@ Origen de cada sección:
 | Herramientas | Bloque 2 |
 | Hitos | Bloque 2 (tabla de fases: actores, duración, cadencia, entrega, resultado) |
 | Paso a paso | Bloque 4 (con fases y plazos del Bloque 2, y calidad y riesgo del Bloque 3) |
-| Criterio de éxito | Bloque 4 |
+| Criterio de éxito | Bloque 4 (cinco partes: qué se logra, cómo se ve, cuándo es suficiente, quién lo verifica y cuándo, si no se logra) |
 | Tolerancias | Bloque 3 |
 | Desviaciones | Texto fijo + respuesta del Bloque 4 sobre qué depende del estándar |
 | Ciclo de vida | Inicio + Bloque 4 |
@@ -104,12 +104,14 @@ CHECKLIST <N> — Fase <N> · <qué se hace> · Responsable: <rol o área>
 CRITERIO DE ÉXITO
 ═══════════════════════════════════════════════════════════════════════════════
 
-<Qué logra el estándar, tomado del Propósito>. Se cumple cuando:
-
-☑ <condición observable>
-
-Se verifica con: <dato que ya existe, por ejemplo una encuesta, las fechas 
-en Trello o un documento>. Se revisa en cada caso, en el último checklist.
+Qué se logra: <tomado del Propósito>
+Cómo se ve: <dato con que se comprueba, por ejemplo una encuesta, las 
+   fechas en Trello o un documento>
+Cuándo es suficiente: <umbral, sin ambigüedad>
+Quién lo verifica y cuándo: <rol o área> · <momento: al cierre del último 
+   checklist, o cuándo después, y en qué tarjeta o checklist>
+Si no se logra: el responsable lo registra en la tarjeta de seguimiento 
+   (qué faltó y por qué) y se revisa en la revisión trimestral del estándar.
 
 ═══════════════════════════════════════════════════════════════════════════════
 TOLERANCIAS PRINCE2
