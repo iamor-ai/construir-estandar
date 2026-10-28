@@ -71,8 +71,8 @@ Explica en una línea para qué: "Uso Drive para guardar la ficha y las herramie
 
 ## Registro de tiempo (interno, no se muestra a la persona)
 
-- Al empezar el Inicio, ejecuta: `mkdir -p "$CLAUDE_PROJECT_DIR/.construir-estandar" && cp "${CLAUDE_SKILL_DIR}/scripts/registrar_hora.py" "$CLAUDE_PROJECT_DIR/.construir-estandar/"` (si `$CLAUDE_PROJECT_DIR` está vacío, usa la carpeta actual). Desde ahí, el hook anota la hora de cada mensaje.
-- Al empezar cada etapa, ejecuta `python3 "${CLAUDE_SKILL_DIR}/scripts/marcar_etapa.py" "<Nombre del estándar>" <etapa>` desde la carpeta del proyecto. Etapas: `inicio`, `bloque1`, `bloque2`, `bloque3`, `bloque4`, `ficha`, `validacion`, `ficha-cerrada`, `herramientas`, `fin`. Mientras no haya nombre, usa un nombre provisorio y mantenlo igual hasta el final.
+- Al empezar el Inicio, ejecuta: `P="${CLAUDE_PROJECT_DIR:-$PWD}"; mkdir -p "$P/.construir-estandar" && cp "${CLAUDE_SKILL_DIR}/scripts/registrar_hora.py" "$P/.construir-estandar/"`. Si `$CLAUDE_PROJECT_DIR` está vacío, el comando usa la carpeta actual. Desde ahí, el hook anota la hora de cada mensaje.
+- Al empezar cada etapa, ejecuta `cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 "${CLAUDE_SKILL_DIR}/scripts/marcar_etapa.py" "<Nombre del estándar>" <etapa>`. Usa siempre esta misma carpeta para todos los scripts de tiempo. Etapas: `inicio`, `bloque1`, `bloque2`, `bloque3`, `bloque4`, `ficha`, `validacion`, `ficha-cerrada`, `herramientas`, `fin`. Mientras no haya nombre, usa un nombre provisorio y mantenlo igual hasta el final.
 - No lo comentes con la persona salvo el mensaje "Al terminar".
 
 ## Etapa 1 · Inicio
@@ -134,10 +134,10 @@ Encabezado: "Las tolerancias definen el margen que tiene el equipo para ajustars
 
 ### Bloque 4 de 4 · Operación
 
-1. **Paso a paso = Lista de Cumplimiento.** Propón el checklist de cada fase: encabezado `Checklist N — Fase N · <qué se hace> · Responsable: <rol o área>` con su plazo si lo hay; ítems verificables que empiezan con un verbo; las condiciones de calidad y los [OBLIGATORIO] del Bloque 3; "Registrar en la tarjeta la fecha de cumplimiento de esta fase"; y en el último checklist, "Criterio de éxito cumplido" como penúltimo ítem y el cierre como último.
+1. **Paso a paso = Lista de Cumplimiento.** Propón el checklist de cada fase: encabezado `Checklist N — Fase N · <qué se hace> · Responsable: <rol o área>` con su plazo si lo hay; ítems verificables que empiezan con un verbo; las condiciones de calidad y los [OBLIGATORIO] del Bloque 3; "Registrar en la tarjeta la fecha de cumplimiento de esta fase"; el ítem "Criterio de éxito cumplido" en el lugar que se defina en el punto 2, "Quién lo verifica y cuándo" (si se verifica al cerrar, como penúltimo ítem del último checklist); y el cierre como último ítem del último checklist.
 2. **Criterio de éxito (cinco partes, en una sola propuesta).** El criterio de éxito comprueba si el estándar logró aquello para lo que existe; el cumplimiento del paso a paso se ve en los checklists, no aquí. Propón las cinco partes a partir del Propósito y de lo ya conversado, y la persona confirma o edita:
    1. **Qué se logra:** tomado del Propósito.
-   2. **Cómo se ve:** el dato con que se comprueba (encuesta, fechas en Trello, documento, otro). Debe medir lo que el estándar controla, no factores externos. Prefiere un dato que ya exista. **Si no existe, propón la forma más simple de obtenerlo** dentro de algo que ya se hace (por ejemplo, una pregunta en una encuesta o reunión que ya ocurre), en vez de dejar el criterio pendiente; si eso implica una plataforma nueva, aplica la regla de plataforma nueva.
+   2. **Cómo se ve:** el dato con que se comprueba (encuesta, fechas en Trello, documento, otro). Debe medir lo que el estándar controla, no factores externos. Prefiere un dato que ya exista. **Si no existe, propón la forma más simple de obtenerlo** dentro de algo que ya se hace (por ejemplo, una pregunta más en un Menti o en una reunión que ya ocurre), en vez de dejar el criterio pendiente. Si hace falta una encuesta o un formulario nuevo, o una plataforma nueva, no lo crees: avisa que se coordina con TDK.
    3. **Cuándo es suficiente:** el umbral, sin ambigüedad (por ejemplo, "todas las áreas responden sí" o "al menos el 80 % de los aspectos en verde"). Si la persona no sabe, propón uno y avisa que se ajusta en la revisión trimestral.
    4. **Quién lo verifica y cuándo:** un rol o área, y el momento. Si el logro se ve al cerrar los checklists, va como penúltimo ítem del último checklist; si se ve después, se dice cuándo (por ejemplo, al cierre de la edición) y en qué tarjeta o checklist queda el ítem.
    5. **Si no se logra:** el responsable lo registra en la tarjeta de seguimiento (qué faltó y por qué), y se revisa en la revisión trimestral del estándar como señal de mejora.
@@ -166,7 +166,7 @@ Al cerrar cada bloque, guarda o actualiza `<carpeta de trabajo>/borrador-<nombre
    - **Otra solución** para el problema que el comentario detecta.
    
    Aplica lo decidido en la ficha .md (1.1), anota en el historial qué cambió, crea el Google Doc de la nueva versión y, validada, ciérrala (1.2, o 1.1 si no hubo cambios). Marca la etapa `ficha-cerrada`.
-7. **Registro de tiempo de la creación.** Ejecuta `python3 "${CLAUDE_SKILL_DIR}/scripts/calcular_tiempo.py" "<Nombre>" <versión> <caso> "<correo de la cuenta, si lo conoces>" creacion` desde la carpeta del proyecto y sube el CSV que imprime a la carpeta "Tiempo de creación" (id `1naJQr-2n7s75UZGDBO7sw2f6fIN7YOh0`) con `create_file` (`contentMimeType: text/csv`, para que quede como Sheet), con el título `TIEMPO - <Nombre> (V<versión>) - creación`. No lo muestres a la persona.
+7. **Registro de tiempo de la creación.** Ejecuta `cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 "${CLAUDE_SKILL_DIR}/scripts/calcular_tiempo.py" "<Nombre>" <versión> <caso> "<correo de la cuenta, si lo conoces>" creacion` y sube el CSV que imprime a la carpeta "Tiempo de creación" (id `1naJQr-2n7s75UZGDBO7sw2f6fIN7YOh0`) con `create_file` (`contentMimeType: text/csv`, para que quede como Sheet), con el título `TIEMPO - <Nombre> (V<versión>) - creación`. No lo muestres a la persona.
 
 ## Etapa 4 · Ficha final y herramientas
 
@@ -177,5 +177,5 @@ Marca la etapa `herramientas`.
    - **Tarjeta de seguimiento en Trello:** escribe el texto completo según [tarjeta-trello.md](referencias/tarjeta-trello.md).
    - **Tracker, Sheet o Menti:** (1) "¿Hay un formato ya creado que quieras mejorar?" (2) revisa cómo responde al objetivo de la herramienta (3) propón mejoras, que la persona valida (4) muestra en el chat cómo quedaría (5) créalo solo si la persona lo valida. Trackers y Sheets van a la carpeta del estándar en Drive; un Menti lo crea la persona con lo acordado.
    - **Presentación de sensibilización:** 6 diapositivas que introducen el estándar a quienes lo van a usar; la diapositiva 3 es un relato visual simple de los pasos resumidos, con responsables. *El método y el formato están en definición: por ahora avisa que este paso todavía no está disponible.* Cuando exista, la persona la sube a mano al mismo tablero, junto al PDF de la ficha.
-   - **Encuestas, formularios o plataformas nuevas:** no las crees; avisa que se coordinan con TDK.
+   - **Encuestas o formularios nuevos, o plataformas nuevas:** no los crees; avisa que se coordinan con TDK. Agregar una pregunta a un Menti o a una reunión que ya existe sí se puede, como cualquier ajuste de herramienta.
 3. **Cierre.** Marca la etapa `fin`. Calcula el tiempo con el tramo `herramientas` y súbelo igual que en la etapa 3, con el título `TIEMPO - <Nombre> (V<versión>) - herramientas`. Da el mensaje "Al terminar" y un resumen con los links de lo creado y la ruta de la carpeta de trabajo.

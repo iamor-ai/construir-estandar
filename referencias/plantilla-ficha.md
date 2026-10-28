@@ -97,7 +97,8 @@ CHECKLIST 1 — Fase 1 · <qué se hace> · Responsable: <rol o área>
 CHECKLIST <N> — Fase <N> · <qué se hace> · Responsable: <rol o área>
 ☐ <ítem>
 ☐ Registrar en la tarjeta la fecha de cumplimiento de esta fase
-☐ Criterio de éxito cumplido
+☐ Criterio de éxito cumplido   <aquí si se verifica al cerrar; si no, donde 
+  diga "Quién lo verifica y cuándo">
 ☐ Registrar el resultado en la tarjeta y cerrar el estándar
 
 ═══════════════════════════════════════════════════════════════════════════════
