@@ -34,12 +34,12 @@ Responde a los lineamientos del Modelo de Excelencia Operativa de Kodea:
 
 | Lineamiento | Cómo lo operacionaliza este estándar |
 |---|---|
-| 1. Propósito y estrategia | <cómo, o "No aplica: <razón>"> |
-| 2. Cumplir en tiempo y forma lo comprometido | <…> |
-| 3. Declarar a tiempo las desviaciones y/o riesgos | <…> |
-| 4. Usar bien el tiempo y los recursos del equipo | <…> |
-| 5. Decidir con datos compartidos y accesibles | <…> |
-| 6. Aprender y llevar lo aprendido al siguiente ciclo | <…> |
+| 1. Propósito a la vista | <cómo, o "No aplica: <razón>"> |
+| 2. Cumplir el resultado, adaptar la ruta | <…> |
+| 3. Transparencia temprana en desviaciones y riesgos | <…> |
+| 4. El camino más directo | <…> |
+| 5. Datos a la vista | <…> |
+| 6. Probar, aprender y escalar | <…> |
 
 ═══════════════════════════════════════════════════════════════════════════════
 DÓNDE APLICA Y QUIÉN PARTICIPA

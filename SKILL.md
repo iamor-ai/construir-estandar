@@ -18,6 +18,7 @@ Acompañas a una persona de Kodea a construir un estándar del ciclo de vida de 
 
 Archivos de esta skill (léelos cuando los necesites):
 - [referencias/plantilla-ficha.md](referencias/plantilla-ficha.md): plantilla de la ficha y de qué bloque sale cada sección.
+- [referencias/lineamientos.md](referencias/lineamientos.md): los 6 lineamientos del Modelo de Excelencia Operativa, con su pregunta guía y cómo responde un estándar.
 - [referencias/roles-y-areas.md](referencias/roles-y-areas.md): roles y áreas validados.
 - [referencias/documentos-inicio.md](referencias/documentos-inicio.md): documentos útiles por caso y cómo descargarlos.
 - [referencias/tarjeta-trello.md](referencias/tarjeta-trello.md): cómo escribir el texto de la tarjeta de Trello.
@@ -103,7 +104,7 @@ Si duda entre dos, pregunta. Un estándar a medio migrar es B. Si una nueva vers
 ### Bloque 1 de 4 · Propósito y alineación
 
 1. **Propósito y nombre (una sola propuesta).** "Con lo que me contaste, este estándar asegura <X> y resuelve <Y>. Lo llamaría <2 o 3 opciones que reflejen el propósito>. ¿Está bien, o quieres cambiar algo?" Si edita, muestra la versión final para que la valide. El nombre refleja el propósito (por ejemplo, "Cumplimiento Contractual" y no "Gestión Contractual").
-2. **Los 6 lineamientos.** Redacta una frase por cada uno, o "No aplica: <razón>"; ninguno se omite. La persona confirma o edita: propósito y estrategia · cumplir en tiempo y forma lo comprometido · declarar a tiempo las desviaciones y/o riesgos · usar bien el tiempo y los recursos del equipo · decidir con datos compartidos y accesibles · aprender y llevar lo aprendido al siguiente ciclo. Si algo que se afirma ocurre en otro estándar, nómbralo.
+2. **Los 6 lineamientos.** Redacta una frase por cada uno, o "No aplica: <razón>"; ninguno se omite. La persona confirma o edita: propósito a la vista · cumplir el resultado, adaptar la ruta · transparencia temprana en desviaciones y riesgos · el camino más directo · datos a la vista · probar, aprender y escalar. Usa la pregunta guía y la columna "cómo responde un estándar" de [lineamientos.md](referencias/lineamientos.md) para redactar cada frase a partir de lo que ya salió. Si algo que se afirma ocurre en otro estándar, nómbralo.
 
 "Dónde aplica" sale de la etapa del Inicio y del Alcance del Bloque 3; "Quién participa" sale de los Bloques 2 y 4. No los preguntes aparte.
 
@@ -166,10 +167,10 @@ Al cerrar cada bloque, guarda o actualiza `<carpeta de trabajo>/borrador-<nombre
 
 Marca la etapa `herramientas`.
 
-1. **PDF.** El PDF es solo para subirlo al tablero "Estándar Desarrollo de Iniciativas", que es el repositorio de los estándares. Genéralo con `bash "${CLAUDE_SKILL_DIR}/scripts/generar_pdf.sh" <ficha.md> "<carpeta de trabajo>/ficha-<nombre>.pdf"`. Formato: Poppins 11, títulos en negrita, solo el título del estándar, sin versión, fechas ni historial. Si responde `FALTA_CHROME`, avisa que hace falta Google Chrome. Revisa todas las páginas antes de entregarlo, súbelo a la carpeta del estándar en Drive y dile a la persona que lo adjunte a la tarjeta del estándar en ese tablero.
+1. **PDF.** El PDF es solo para subirlo al tablero "Estándar Desarrollo de Iniciativas", que es el repositorio de los estándares. Genéralo con `bash "${CLAUDE_SKILL_DIR}/scripts/generar_pdf.sh" <ficha.md> "<carpeta de trabajo>/ficha-<nombre>.pdf"`. Formato: Poppins 11, títulos en negrita, solo el título del estándar, sin versión, fechas ni historial. Si responde `FALTA_CHROME`, avisa que hace falta Google Chrome. Revisa todas las páginas antes de entregarlo, súbelo a la carpeta del estándar en Drive y dile a la persona que lo adjunte **a mano** a la tarjeta del estándar en ese tablero (la skill no escribe en Trello). La ficha y la presentación tienen que quedar en Trello para descarga del equipo (lineamiento 5, Datos a la vista).
 2. **Herramientas.** Muestra las herramientas del Bloque 2 con su estado y lo que propones. Las "listas para usar" no se trabajan. Se trabaja de a una:
    - **Tarjeta de seguimiento en Trello:** escribe el texto completo según [tarjeta-trello.md](referencias/tarjeta-trello.md).
    - **Tracker, Sheet o Menti:** (1) "¿Hay un formato ya creado que quieras mejorar?" (2) revisa cómo responde al objetivo de la herramienta (3) propón mejoras, que la persona valida (4) muestra en el chat cómo quedaría (5) créalo solo si la persona lo valida. Trackers y Sheets van a la carpeta del estándar en Drive; un Menti lo crea la persona con lo acordado.
-   - **Presentación de sensibilización:** 6 diapositivas que introducen el estándar a quienes lo van a usar; la diapositiva 3 es un relato visual simple de los pasos resumidos, con responsables. *El método y el formato están en definición: por ahora avisa que este paso todavía no está disponible.*
+   - **Presentación de sensibilización:** 6 diapositivas que introducen el estándar a quienes lo van a usar; la diapositiva 3 es un relato visual simple de los pasos resumidos, con responsables. *El método y el formato están en definición: por ahora avisa que este paso todavía no está disponible.* Cuando exista, la persona la sube a mano al mismo tablero, junto al PDF de la ficha.
    - **Encuestas, formularios o plataformas nuevas:** no las crees; avisa que se coordinan con TDK.
 3. **Cierre.** Marca la etapa `fin`. Calcula el tiempo con el tramo `herramientas` y súbelo igual que en la etapa 3, con el título `TIEMPO - <Nombre> (V<versión>) - herramientas`. Da el mensaje "Al terminar" y un resumen con los links de lo creado y la ruta de la carpeta de trabajo.
