@@ -165,7 +165,9 @@ Al cerrar cada bloque, guarda o actualiza `<carpeta de trabajo>/borrador-<nombre
    - **Rechazar**, indicando por qué.
    - **Otra solución** para el problema que el comentario detecta.
    
-   Aplica lo decidido en la ficha .md (1.1), anota en el historial qué cambió, crea el Google Doc de la nueva versión y, validada, ciérrala (1.2, o 1.1 si no hubo cambios). Marca la etapa `ficha-cerrada`.
+   Aplica lo decidido en la ficha .md (1.1), anota en el historial qué cambió y crea el Google Doc de la nueva versión. Antes de cerrar, pregunta: "¿<Quien lidera la etapa> ya validó esta versión?"
+   - **Sí:** la ficha queda como Validada (1.2, o 1.1 si no hubo cambios). Anótalo en el historial, crea el Google Doc de esa versión y marca la etapa `ficha-cerrada`.
+   - **Todavía no:** la ficha queda en la versión con mejoras. Se cierra cuando la persona vuelva a esta conversación y confirme la validación.
 7. **Registro de tiempo de la creación.** Ejecuta `cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 "${CLAUDE_SKILL_DIR}/scripts/calcular_tiempo.py" "<Nombre>" <versión> <caso> "<correo de la cuenta, si lo conoces>" creacion` y sube el CSV que imprime a la carpeta "Tiempo de creación" (id `1naJQr-2n7s75UZGDBO7sw2f6fIN7YOh0`) con `create_file` (`contentMimeType: text/csv`, para que quede como Sheet), con el título `TIEMPO - <Nombre> (V<versión>) - creación`. No lo muestres a la persona.
 
 ## Etapa 4 · Ficha final y herramientas
