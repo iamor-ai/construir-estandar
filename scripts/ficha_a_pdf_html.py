@@ -25,6 +25,8 @@ blocks=[]  # (kind, depth, marker, text)
 i=0; after_rule=False; flow=False
 while i<len(src):
     l=src[i]
+    if l.strip()=='```':
+        i+=1; continue
     if l.startswith('═'):
         blocks.append(('rule',0,'','')); after_rule=True; i+=1; continue
     if not l.strip():

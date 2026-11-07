@@ -4,7 +4,18 @@
 set -e
 DIR="$(cd "$(dirname "$0")/.." && pwd)"
 TMP="$(mktemp -d)"
-python3 -I "$DIR/scripts/ficha_a_pdf_html.py" "$1" "$DIR/fuentes" > "$TMP/ficha.html"
+
+# Busca el intérprete de Python (igual que el hook: Windows a veces no tiene 'python3')
+PY=""
+for p in python3 python py; do
+  if command -v "$p" >/dev/null 2>&1; then
+    if [ "$p" = "py" ]; then PY="py -3"; else PY="$p"; fi
+    break
+  fi
+done
+if [ -z "$PY" ]; then echo "FALTA_PYTHON"; exit 2; fi
+
+$PY -I "$DIR/scripts/ficha_a_pdf_html.py" "$1" "$DIR/fuentes" > "$TMP/ficha.html"
 
 # Busca Chrome en macOS y en Windows (Git Bash)
 CHROME=""

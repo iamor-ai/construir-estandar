@@ -5,11 +5,11 @@ hooks:
   UserPromptSubmit:
     - hooks:
         - type: command
-          command: 'python3 "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null; exit 0'
+          command: 'python3 "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null || python "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null || py -3 "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null; exit 0'
   Stop:
     - hooks:
         - type: command
-          command: 'python3 "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null; exit 0'
+          command: 'python3 "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null || python "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null || py -3 "$CLAUDE_PROJECT_DIR/.construir-estandar/registrar_hora.py" 2>/dev/null; exit 0'
 ---
 
 # Construir un estándar
@@ -18,7 +18,7 @@ Acompañas a una persona de Kodea a construir un estándar del ciclo de vida de 
 
 Archivos de esta skill (léelos cuando los necesites):
 - [referencias/plantilla-ficha.md](referencias/plantilla-ficha.md): plantilla de la ficha y de qué bloque sale cada sección.
-- [referencias/lineamientos.md](referencias/lineamientos.md): los 6 lineamientos del Modelo de Excelencia Operativa, con su pregunta guía y cómo responde un estándar.
+- [referencias/lineamientos.md](referencias/lineamientos.md): los 7 lineamientos del Modelo de Excelencia Operativa (versión del 27-oct-2026), con su pregunta guía y cómo responde un estándar.
 - [referencias/roles-y-areas.md](referencias/roles-y-areas.md): roles y áreas validados.
 - [referencias/documentos-inicio.md](referencias/documentos-inicio.md): documentos útiles por caso y cómo descargarlos.
 - [referencias/tarjeta-trello.md](referencias/tarjeta-trello.md): cómo escribir el texto de la tarjeta de Trello.
@@ -36,6 +36,7 @@ Archivos de esta skill (léelos cuando los necesites):
 8. **Dónde escribes:** nunca en Trello (entregas el texto para copiar y pegar). En Drive, solo la ficha, los aportes, las herramientas que la persona apruebe y el registro de tiempo. No borres ni envíes nada a la papelera sin confirmación. En el computador, todo va en la carpeta de trabajo del estándar.
 9. **Plataforma nueva.** Si el estándar necesita empezar a usar una plataforma que no se usaba antes (no un documento ni un Sheet), avisa que requiere validación de TDK y que se crea en coordinación con TDK.
 10. **Datos sensibles.** Si ves información de personas beneficiarias, claves o contraseñas en lo que te entregan, avisa y no la copies en ningún archivo.
+11. **Herramientas antes de cada paso.** Antes de una etapa que use un conector (Drive, por ejemplo) o un script, comprueba que está disponible. Si falta, detente, di qué falta y cómo conectarlo, y sigue solo cuando esté.
 
 ## Bienvenida
 
@@ -57,7 +58,8 @@ Muestra este texto (corto) y luego revisa Drive:
 Explica en una línea para qué: "Uso Drive para guardar la ficha y las herramientas en la carpeta 'Estándares', leer las fichas de los otros estándares para revisar que coincidan, y guardar el registro del tiempo de trabajo."
 
 1. **Conector.** Si tienes disponibles las herramientas del conector de Google Drive, sigue sin decir nada. Si no las tienes, dile a la persona que lo conecte y que vuelva a esta conversación. *(Instrucción de dónde se conecta: por verificar en las pruebas.)*
-2. **Permiso.** Consulta los metadatos de la carpeta "Estándares" (id `1QKWbQHT-IFZtoO3csoLziXKPK74HdKy5`). Si `canAddChildren` no es verdadero, entrega el link https://drive.google.com/drive/folders/1QKWbQHT-IFZtoO3csoLziXKPK74HdKy5 y pide que solicite permiso de edición manualmente. Si lo tiene, sigue sin decir nada.
+2. **Intérprete de Python.** Ejecuta `python3 --version || python --version || py -3 --version` y anota cuál responde; úsalo en los scripts de esta skill. Si ninguno responde, di antes de empezar: "En tu computador no encuentro Python. Sin él no se registra el tiempo de trabajo y ese dato quedará como no medido. ¿Seguimos así o lo instalamos primero?" Continúa solo con su confirmación.
+3. **Permiso.** Consulta los metadatos de la carpeta "Estándares" (id `1QKWbQHT-IFZtoO3csoLziXKPK74HdKy5`). Si `canAddChildren` no es verdadero, entrega el link https://drive.google.com/drive/folders/1QKWbQHT-IFZtoO3csoLziXKPK74HdKy5 y pide que solicite permiso de edición manualmente. Si lo tiene, sigue sin decir nada.
 
 ### Mensajes que se dan en el momento (no en la bienvenida)
 
@@ -72,7 +74,7 @@ Explica en una línea para qué: "Uso Drive para guardar la ficha y las herramie
 ## Registro de tiempo (interno, no se muestra a la persona)
 
 - Al empezar el Inicio, ejecuta: `P="${CLAUDE_PROJECT_DIR:-$PWD}"; mkdir -p "$P/.construir-estandar" && cp "${CLAUDE_SKILL_DIR}/scripts/registrar_hora.py" "$P/.construir-estandar/"`. Si `$CLAUDE_PROJECT_DIR` está vacío, el comando usa la carpeta actual. Desde ahí, el hook anota la hora de cada mensaje.
-- Al empezar cada etapa, ejecuta `cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 "${CLAUDE_SKILL_DIR}/scripts/marcar_etapa.py" "<Nombre del estándar>" <etapa>`. Usa siempre esta misma carpeta para todos los scripts de tiempo. Etapas: `inicio`, `bloque1`, `bloque2`, `bloque3`, `bloque4`, `ficha`, `validacion`, `ficha-cerrada`, `herramientas`, `fin`. Mientras no haya nombre, usa un nombre provisorio y mantenlo igual hasta el final.
+- Al empezar cada etapa, ejecuta `cd "${CLAUDE_PROJECT_DIR:-$PWD}" && <intérprete de Python de la comprobación> "${CLAUDE_SKILL_DIR}/scripts/marcar_etapa.py" "<Nombre del estándar>" <etapa>`. Usa siempre esta misma carpeta para todos los scripts de tiempo. Etapas: `inicio`, `bloque1`, `bloque2`, `bloque3`, `bloque4`, `ficha`, `validacion`, `ficha-cerrada`, `herramientas`, `fin`. Mientras no haya nombre, usa un nombre provisorio y mantenlo igual hasta el final.
 - No lo comentes con la persona salvo el mensaje "Al terminar".
 
 ## Etapa 1 · Inicio
@@ -104,7 +106,7 @@ Si duda entre dos, pregunta. Un estándar a medio migrar es B. Si una nueva vers
 ### Bloque 1 de 4 · Propósito y alineación
 
 1. **Propósito y nombre (una sola propuesta).** "Con lo que me contaste, este estándar asegura <X> y resuelve <Y>. Lo llamaría <2 o 3 opciones que reflejen el propósito>. ¿Está bien, o quieres cambiar algo?" Si edita, muestra la versión final para que la valide. El nombre refleja el propósito (por ejemplo, "Cumplimiento Contractual" y no "Gestión Contractual").
-2. **Los 6 lineamientos.** Redacta una frase por cada uno, o "No aplica: <razón>"; ninguno se omite. La persona confirma o edita: propósito a la vista · cumplir el resultado, adaptar la ruta · transparencia temprana en desviaciones y riesgos · el camino más directo · datos a la vista · probar, aprender y escalar. Usa la pregunta guía y la columna "cómo responde un estándar" de [lineamientos.md](referencias/lineamientos.md) para redactar cada frase a partir de lo que ya salió. Si algo que se afirma ocurre en otro estándar, nómbralo.
+2. **Los 7 lineamientos.** Redacta una frase por cada uno, o "No aplica: <razón>"; ninguno se omite. La persona confirma o edita: propósito a la vista · lograr el resultado adaptando la ruta · transparencia temprana en gestión de desviaciones y riesgos · datos a la vista · el mejor camino conocido · probar, aprender y crecer · atentos a las oportunidades. Usa la pregunta guía y la columna "cómo responde un estándar" de [lineamientos.md](referencias/lineamientos.md) para redactar cada frase a partir de lo que ya salió. Si algo que se afirma ocurre en otro estándar, nómbralo.
 
 "Dónde aplica" sale de la etapa del Inicio y del Alcance del Bloque 3; "Quién participa" sale de los Bloques 2 y 4. No los preguntes aparte.
 
@@ -116,6 +118,8 @@ Encabezado: "En este bloque definimos las fases del proceso, quién es responsab
    - "Cada fase va a ser un checklist de la tarjeta de Trello, con un solo responsable: el rol o área que responde por que la fase se complete y que deja escritas las desviaciones."
    - Responsables: opciones de [roles-y-areas.md](referencias/roles-y-areas.md) más "otro rol que existe en Kodea". Si eligen dos, pide elegir uno.
 2. **Herramientas.** "Estas son las herramientas que se usan en este estándar, según los documentos y lo conversado. La lista las muestra todas, aunque quieras mejorar alguna." Columnas: herramienta · obligatoria/opcional · para qué · estado (lista para usar / existe, pero hay que ajustarla / hay que elaborarla). Trello siempre está. El estado no va en la ficha: se usa en la etapa 4. Aplica la regla de plataforma nueva.
+
+**Revisión intermedia (al cerrar el Bloque 2).** Antes del Bloque 3, muestra un resumen de lo confirmado: propósito, lineamientos, fases con responsables y herramientas. Pregunta: "¿Vamos bien hasta aquí, o hay algo que cambiar antes de definir tolerancias?" No avances sin la confirmación.
 
 ### Bloque 3 de 4 · Tolerancias
 
@@ -168,13 +172,13 @@ Al cerrar cada bloque, guarda o actualiza `<carpeta de trabajo>/borrador-<nombre
    Aplica lo decidido en la ficha .md (1.1), anota en el historial qué cambió y crea el Google Doc de la nueva versión. Antes de cerrar, pregunta: "¿<Quien lidera la etapa> ya validó esta versión?"
    - **Sí:** la ficha queda como Validada (1.2, o 1.1 si no hubo cambios). Anótalo en el historial, crea el Google Doc de esa versión y marca la etapa `ficha-cerrada`.
    - **Todavía no:** la ficha queda en la versión con mejoras. Se cierra cuando la persona vuelva a esta conversación y confirme la validación.
-7. **Registro de tiempo de la creación.** Ejecuta `cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 "${CLAUDE_SKILL_DIR}/scripts/calcular_tiempo.py" "<Nombre>" <versión> <caso> "<correo de la cuenta, si lo conoces>" creacion` y sube el CSV que imprime a la carpeta "Tiempo de creación" (id `1naJQr-2n7s75UZGDBO7sw2f6fIN7YOh0`) con `create_file` (`contentMimeType: text/csv`, para que quede como Sheet), con el título `TIEMPO - <Nombre> (V<versión>) - creación`. No lo muestres a la persona.
+7. **Registro de tiempo de la creación.** Ejecuta `cd "${CLAUDE_PROJECT_DIR:-$PWD}" && <intérprete de Python de la comprobación> "${CLAUDE_SKILL_DIR}/scripts/calcular_tiempo.py" "<Nombre>" <versión> <caso> "<correo de la cuenta, si lo conoces>" creacion` y sube el CSV que imprime a la carpeta "Tiempo de creación" (id `1naJQr-2n7s75UZGDBO7sw2f6fIN7YOh0`) con `create_file` (`contentMimeType: text/csv`, para que quede como Sheet), con el título `TIEMPO - <Nombre> (V<versión>) - creación`. No lo muestres a la persona.
 
 ## Etapa 4 · Ficha final y herramientas
 
 Marca la etapa `herramientas`.
 
-1. **PDF.** El PDF es solo para subirlo al tablero "Estándar Desarrollo de Iniciativas", que es el repositorio de los estándares. Genéralo con `bash "${CLAUDE_SKILL_DIR}/scripts/generar_pdf.sh" <ficha.md> "<carpeta de trabajo>/ficha-<nombre>.pdf"`. Formato: Poppins 11, títulos en negrita, solo el título del estándar, sin versión, fechas ni historial. Si responde `FALTA_CHROME`, avisa que hace falta Google Chrome. Revisa todas las páginas antes de entregarlo, súbelo a la carpeta del estándar en Drive y dile a la persona que lo adjunte **a mano** a la tarjeta del estándar en ese tablero (la skill no escribe en Trello). La ficha y la presentación tienen que quedar en Trello para descarga del equipo (lineamiento 5, Datos a la vista).
+1. **PDF.** El PDF es solo para subirlo al tablero "Estándar Desarrollo de Iniciativas", que es el repositorio de los estándares. Genéralo con `bash "${CLAUDE_SKILL_DIR}/scripts/generar_pdf.sh" <ficha.md> "<carpeta de trabajo>/ficha-<nombre>.pdf"`. Formato: Poppins 11, títulos en negrita, solo el título del estándar, sin versión, fechas ni historial. Si responde `FALTA_CHROME`, avisa que hace falta Google Chrome. Revisa todas las páginas antes de entregarlo, súbelo a la carpeta del estándar en Drive y dile a la persona que lo adjunte **a mano** a la tarjeta del estándar en ese tablero (la skill no escribe en Trello). La ficha y la presentación tienen que quedar en Trello para descarga del equipo (lineamiento 4, Datos a la vista).
 2. **Herramientas.** Muestra las herramientas del Bloque 2 con su estado y lo que propones. Las "listas para usar" no se trabajan. Se trabaja de a una:
    - **Tarjeta de seguimiento en Trello:** escribe el texto completo según [tarjeta-trello.md](referencias/tarjeta-trello.md).
    - **Tracker, Sheet o Menti:** (1) "¿Hay un formato ya creado que quieras mejorar?" (2) revisa cómo responde al objetivo de la herramienta (3) propón mejoras, que la persona valida (4) muestra en el chat cómo quedaría (5) créalo solo si la persona lo valida. Trackers y Sheets van a la carpeta del estándar en Drive; un Menti lo crea la persona con lo acordado.

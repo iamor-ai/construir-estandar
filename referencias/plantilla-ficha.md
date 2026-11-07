@@ -35,11 +35,12 @@ Responde a los lineamientos del Modelo de Excelencia Operativa de Kodea:
 | Lineamiento | Cómo lo operacionaliza este estándar |
 |---|---|
 | 1. Propósito a la vista | <cómo, o "No aplica: <razón>"> |
-| 2. Cumplir el resultado, adaptar la ruta | <…> |
-| 3. Transparencia temprana en desviaciones y riesgos | <…> |
-| 4. El camino más directo | <…> |
-| 5. Datos a la vista | <…> |
-| 6. Probar, aprender y escalar | <…> |
+| 2. Lograr el resultado adaptando la ruta | <…> |
+| 3. Transparencia temprana en gestión de desviaciones y riesgos | <…> |
+| 4. Datos a la vista | <…> |
+| 5. El mejor camino conocido | <…> |
+| 6. Probar, aprender y crecer | <…> |
+| 7. Atentos a las oportunidades | <…> |
 
 ═══════════════════════════════════════════════════════════════════════════════
 DÓNDE APLICA Y QUIÉN PARTICIPA
