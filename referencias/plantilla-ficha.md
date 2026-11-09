@@ -149,6 +149,8 @@ error: es dejar escrita una decisión del equipo responsable. Sirve para
 dar flexibilidad al equipo y para levantar información sobre cómo se usa 
 realmente el estándar (qué pasos sobran o faltan).
 
+Las desviaciones se declaran en la tarjeta de seguimiento de este estándar, en el tablero "Estándar Desarrollo de Iniciativas".
+
 Quién la declara: el responsable del checklist donde ocurre.
 Cuándo: a tiempo, en cuanto se decide no cumplir o se sabe que no se va a 
 cumplir. No después.
@@ -183,14 +185,14 @@ bien, generó fricción o quedó ambiguo, para que el estándar se ajuste con
 el uso real y no quede fijo desde su primera versión.
 
 Cómo se hace:
-Ir al tablero "Estándar Desarrollo de Iniciativas" y dejar el reporte o 
-mejora en "Comentarios y actividad" de este estándar, etiquetando a 
-<responsables de los checklists>. No requiere un formulario ni una 
-instancia formal aparte.
+En la tarjeta de seguimiento de este estándar, en el tablero "Estándar
+Desarrollo de Iniciativas", se agrega una "Solicitud de mejora": qué no
+funcionó y qué se podría mejorar. Va junto a las desviaciones; no es un
+paso más.
 
-El estándar se revisa formalmente cada 3 meses, o antes si se acumulan 3 
-o más comentarios similares sobre el mismo punto — lo que ocurra primero. 
-La revisión toma esos comentarios acumulados y decide si el estándar 
+El estándar se revisa formalmente cada 3 meses, o antes si se acumulan 3
+o más solicitudes de mejora similares sobre el mismo punto — lo que ocurra
+primero. La revisión toma esas solicitudes y decide si el estándar
 necesita una nueva versión.
 
 ═══════════════════════════════════════════════════════════════════════════════

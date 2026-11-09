@@ -13,7 +13,7 @@ Se muestran para **orientar la búsqueda, no para exigirlos**. Primero se muestr
 | B | El flujo o la ficha actual | Punto de partida para prellenar los bloques |
 | C | Ficha vigente (.md, o el Google Doc si no está el .md) | Base de la revisión |
 | C | Flujo del estándar en Miro, si existe | Ver si flujo y ficha coinciden |
-| C | Tarjetas de seguimiento del estándar y comentarios del tablero "Estándar Desarrollo de Iniciativas" | Desviaciones que se repiten y mejoras reportadas |
+| C | Tarjetas de seguimiento del estándar en el tablero "Estándar Desarrollo de Iniciativas" (desviaciones y solicitudes de mejora) | Desviaciones que se repiten y mejoras solicitadas |
 | C | Resultados del criterio de éxito (por ejemplo, Menti) | Si el estándar cumple su propósito |
 | C | Retros que mencionen el estándar | Fricciones de uso |
 

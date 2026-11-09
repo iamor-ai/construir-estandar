@@ -36,5 +36,8 @@ else
   HTML="$TMP/ficha.html"
   SALIDA="$2"
 fi
+rm -f "$2"
 "$CHROME" --headless=new --disable-gpu --no-pdf-header-footer --print-to-pdf="$SALIDA" "file:///${HTML#/}" 2>&1 | grep -o "[0-9]* bytes written" || true
 rm -rf "$TMP"
+# Si Chrome no escribió el archivo, el fallo tiene que verse: no se entrega un PDF que no existe
+if [ ! -s "$2" ]; then echo "ERROR_PDF: Chrome no escribió el PDF en $2"; exit 4; fi

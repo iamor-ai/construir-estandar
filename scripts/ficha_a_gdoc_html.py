@@ -1,11 +1,15 @@
 # Convierte la ficha .md en HTML con estilos en línea para crear el Google Doc con el conector de Drive
 # (create_file, contentMimeType text/html). Formato: Poppins; títulos en negrita; Encabezado 1 = 14 pt,
-# Encabezado 2 = 12 pt, texto = 11 pt. Contenido igual que el PDF: solo el título, sin versión ni fechas.
+# Encabezado 2 = 12 pt, texto = 11 pt. Primera línea: la versión (VERSIÓN: de la ficha). Lo demás igual que el PDF: sin fechas ni historial.
 # Uso: python3 ficha_a_gdoc_html.py <ficha.md> <carpeta-fuentes> > ficha-gdoc.html
 import re, subprocess, sys, os
 aqui = os.path.dirname(os.path.abspath(__file__))
-h = subprocess.run([sys.executable, '-I', os.path.join(aqui, 'ficha_a_pdf_html.py'), sys.argv[1], sys.argv[2]],
-                   capture_output=True, text=True, check=True).stdout
+r = subprocess.run([sys.executable, '-I', os.path.join(aqui, 'ficha_a_pdf_html.py'), sys.argv[1], sys.argv[2]],
+                   capture_output=True, text=True)
+if r.returncode != 0:
+    sys.stderr.write(r.stderr or 'ERROR: no se pudo convertir la ficha.\n')
+    sys.exit(1)
+h = r.stdout
 cuerpo = h.split('<body>', 1)[1].rsplit('</body>', 1)[0]
 F = "font-family:Poppins,sans-serif;"
 H1 = F + "font-size:14pt;font-weight:700;margin:18pt 0 8pt 0;"
@@ -31,4 +35,6 @@ cuerpo = re.sub(r'<p class="[^"]*">', f'<p style="{P}">', cuerpo)
 cuerpo = re.sub(r'<span class="m">(.*?)</span>', r'\1 ', cuerpo)
 cuerpo = cuerpo.replace('<table>', '<table style="border-collapse:collapse;width:100%;">')
 cuerpo = cuerpo.replace('<th>', f'<th style="{TH}">').replace('<td>', f'<td style="{TD}">')
-print(f'<html><head><meta charset="utf-8"></head><body style="{F}font-size:11pt;">{cuerpo}</body></html>')
+ver = next((l.strip() for l in open(sys.argv[1], encoding='utf-8') if l.startswith('VERSIÓN:')), '')
+cabecera = f'<p style="{B}">{ver}</p>' if ver else ''
+print(f'<html><head><meta charset="utf-8"></head><body style="{F}font-size:11pt;">{cabecera}{cuerpo}</body></html>')

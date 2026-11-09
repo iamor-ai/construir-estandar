@@ -1,84 +1,73 @@
 # Texto de la tarjeta de seguimiento en Trello
 
-Claude **no escribe en Trello**. Escribe en el chat el texto completo de la tarjeta, listo para copiar y pegar, con la estructura fija de las tarjetas de Kodea (título, metadatos, descripción y checklists), adaptada a una tarjeta de seguimiento de estándar. Modelo real: tarjeta plantilla `XQsGU4xy` ("Estándares de cumplimiento y traspaso · [Nombre Iniciativa] · [Nombre Aportante]"), tablero "Estándar Desarrollo de Iniciativas", columna "0. Base".
+Claude **no escribe en Trello**. Escribe en el chat el texto completo de la tarjeta, para copiar y pegar. La persona lo valida antes de crearla.
 
 Todo sale de lo confirmado en los bloques. Nada se inventa. Nunca nombres de personas: solo roles y áreas.
 
 ## Estructura de la respuesta (en este orden, sin secciones extra)
 
 **0. DÓNDE CREARLA**
-- Tablero "Estándar Desarrollo de Iniciativas", columna de la etapa del estándar.
-- Marcarla como plantilla de Trello (menú de la tarjeta → Convertir en plantilla), para que los equipos la copien en su Kanban en cada caso.
+- Tablero "Estándar Desarrollo de Iniciativas" (https://trello.com/b/x6mpA3C3), en la columna de la etapa en que ocurre el estándar.
+- Una vez creada, debe quedar en ese tablero como plantilla, en el Kanban desde el que se inicia el proceso. La persona lo hace a mano en Trello.
 
 **1. TÍTULO DE LA TARJETA**
 ```
-Estándar de <Nombre> · [Nombre Iniciativa] · [Nombre Aportante]
+Estándar de <Nombre> · [Nombre de la iniciativa] · [Aportante o edición]
 ```
-(Los corchetes son campos que se completan cada vez que se usa la plantilla.)
+Los corchetes se completan cada vez que se usa la plantilla.
 
 **2. METADATOS DE LA TARJETA**
 - **Miembros:** ninguno en la plantilla. Se agregan al usarla en cada caso (la persona a cargo de cada checklist).
-- **Vencimiento:** N/A en la plantilla.
+- **Vencimiento:** la fecha límite de este caso, que siempre se pone.
 - **Etiquetas:** las oficiales del tablero que correspondan, o ninguna.
-- **Adjuntos:** el PDF de la ficha y, cuando exista, la presentación de sensibilización.
+- **Adjuntos:** las herramientas del estándar, cada una con su link. La persona las sube a mano. La ficha final y la presentación van en la tarjeta de introducción, no aquí.
 
 **3. DESCRIPCIÓN** (en un bloque de código, para copiar y pegar en la descripción)
 ```
+**PRIORIDAD:** <Fecha fija o Estándar, la que la persona elige para este caso>
+**FECHA LÍMITE:** [fecha]
+
 **QUEREMOS**: <verbo en infinitivo + qué asegura el estándar, tomado del Propósito>.
 
 **PARA:** <beneficio, tomado del Propósito y del criterio de éxito>.
 
 **ESTARÁ LISTO CUANDO:**
 
-- <criterio de éxito cumplido>
+- <criterio comprobable, tomado del criterio de éxito>
+- <criterio comprobable>
 - Todos los checklists están completos o con sus desviaciones declaradas, y no hay ítems [OBLIGATORIO] sin cumplir.
 
 **LEER ANTES DE USAR**
 
-:point_right: A continuación encontrarás 3 títulos que te servirán de guía del proceso entero. Solo el primero requiere que agregues información.
+La base de este estándar es la autonomía del equipo para completarlo con flexibilidad. Si decides no hacer un paso, o hacerlo de otra manera, anótalo en la sección de Desviaciones de esta tarjeta: qué no se hizo, qué se decidió en su lugar y por qué. Esto vale para cada paso, excepto los marcados como [OBLIGATORIO].
 
-#### **I. Información de apoyo:** [completar]
+**Desviaciones.** Declarar una desviación no es reportar un error: es dejar escrita una decisión del equipo, y sirve para levantar información sobre cómo se usa realmente el estándar. Si es un plazo, menciona al Delivery Manager.
 
-**<Dato que se completa en cada caso>:** [completar]
-**<Fecha de inicio del plazo>:** [fecha]
-**Fecha límite para <acción> (+<plazo>):** [fecha]
-<una línea por cada plazo de las tolerancias de Tiempo; si no hay plazos, solo los datos de apoyo>
-
-#### **II. ¿Cómo usar esta tarjeta?**
-
-Cada área trabaja solo su(s) checklist(s) y, antes de salir, deja todo sincronizado con el Kanban de quien toma la posta. Este es el paso a paso:
-
-1. <Responsable del Checklist 1> completa el Checklist 1 y <a quién entrega o avisa>.
-2. <Responsable del Checklist 2> completa el Checklist 2 y <…>.
-<una línea por checklist, en orden; la última dice quién cierra la tarjeta>
-
-#### **III. Responsables y desviaciones**
-
-La persona encargada de un checklist es responsable de que todos sus ítems se cumplan. Si quieres cambiar el orden interno de las acciones dentro de tu checklist, ¡adelante!
-
-**Si algo no se cumple** (un ítem, un plazo o una tolerancia), es una desviación. El responsable del checklist la declara a tiempo, como comentario en esta tarjeta: qué no se hizo, qué se decidió en su lugar y por qué. Si es un plazo, menciona al Delivery Manager. Declarar una desviación no es reportar un error: es dejar escrita una decisión del equipo, y sirve para levantar información sobre cómo se usa realmente el estándar.
+**Solicitud de mejora.** Si algo en este estándar no funcionó, anótalo en esta tarjeta como "Solicitud de mejora", con lo que te parece que sería una mejora. Va junto a las desviaciones; no es un paso más.
 
 **Los ítems marcados [OBLIGATORIO] no admiten desviación.** <Variante del Bloque 4: "Si uno no se cumple, no se <avanza a lo que depende del estándar>." o "Si uno no se cumple, se escala al Delivery Manager y al equipo afectado, y continuar requiere la aprobación de ambos.">
 ```
 
 **4. CHECKLISTS**
-Uno por fase, en el mismo orden y con las mismas palabras que el paso a paso de la ficha. Para cada checklist:
-- El nombre va **fuera** del bloque de código: `Checklist N — Fase X · <Responsable> (<qué se hace>)`.
+Uno por fase, en el mismo orden y con las mismas palabras que el paso a paso de la ficha. El nombre de cada checklist lleva el número de la fase, su título y el área responsable:
+`Checklist N — Fase N · <Título de la fase> · Responsable: <área>`
+
+- El nombre va **fuera** del bloque de código.
 - Los ítems van **dentro de un bloque de código de texto plano, un ítem por línea**, sin viñetas, sin numeración y sin casillas `[ ]`. Así, al pegarlos en "Añadir elemento" del checklist, Trello crea un ítem por línea.
 
 Ejemplo de formato:
 
-Checklist 1 — Fase 1 · Sostenibilidad (Creación)
+Checklist 1 — Fase 0 · Asignación del LIA · Responsable: Sostenibilidad
 ```
-Crear el cuaderno en NotebookLM
-Compartir el cuaderno con Cumplimiento y Operaciones
-Registrar en esta tarjeta la fecha de cumplimiento de esta fase
+Acordar el LIA con la Directora de Educación
+Crear el accionable en Trello y agregar al LIA como miembro
 ```
 
 **Por probar:** si Trello separa bien los ítems que empiezan con `[OBLIGATORIO]`. Si no, se avisa a la persona que esos ítems se agregan uno por uno.
 
 ## Comprobación antes de entregar
 
+- El título, la prioridad, la fecha límite, la descripción y los checklists están completos.
 - Los checklists dicen exactamente lo mismo que el paso a paso de la ficha.
+- Cada checklist lleva número de fase, título de la fase y área responsable.
 - No aparece ningún nombre de persona.
-- Cada plazo de las tolerancias tiene su línea en "I. Información de apoyo".

@@ -8,7 +8,9 @@ TITULO=next((l.strip().title() for l in src if l.startswith('FICHA EJECUTABLE'))
 # DROP_HEADER: el PDF no muestra versión, fechas ni historial de cambios (viven solo en el .md)
 _a=next((k for k,l in enumerate(src) if l.startswith('VERSIÓN:')),None)
 if _a is not None:
-    _b=next(k for k in range(_a,len(src)) if src[k].startswith('═'))
+    _b=next((k for k in range(_a,len(src)) if src[k].startswith('═')),None)
+    if _b is None:
+        sys.exit('ERROR: la ficha tiene la línea VERSIÓN: pero no el separador ═══ que la cierra. Revisa que la ficha siga la plantilla.')
     del src[_a:_b]
 def b64(f): return base64.b64encode(open(f,'rb').read()).decode()
 def esc(t): return html.escape(t,quote=False)
