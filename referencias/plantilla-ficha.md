@@ -35,11 +35,12 @@ Responde a los lineamientos del Modelo de Excelencia Operativa de Kodea:
 | Lineamiento | Cómo lo operacionaliza este estándar |
 |---|---|
 | 1. Propósito a la vista | <cómo, o "No aplica: <razón>"> |
-| 2. Cumplir el resultado, adaptar la ruta | <…> |
-| 3. Transparencia temprana en desviaciones y riesgos | <…> |
-| 4. El camino más directo | <…> |
-| 5. Datos a la vista | <…> |
-| 6. Probar, aprender y escalar | <…> |
+| 2. Lograr el resultado adaptando la ruta | <…> |
+| 3. Transparencia temprana en gestión de desviaciones y riesgos | <…> |
+| 4. Datos a la vista | <…> |
+| 5. El mejor camino conocido | <…> |
+| 6. Probar, aprender y crecer | <…> |
+| 7. Atentos a las oportunidades | <…> |
 
 ═══════════════════════════════════════════════════════════════════════════════
 DÓNDE APLICA Y QUIÉN PARTICIPA
@@ -148,6 +149,8 @@ error: es dejar escrita una decisión del equipo responsable. Sirve para
 dar flexibilidad al equipo y para levantar información sobre cómo se usa 
 realmente el estándar (qué pasos sobran o faltan).
 
+Las desviaciones se declaran en la tarjeta de seguimiento de este estándar, en el tablero "Estándar Desarrollo de Iniciativas".
+
 Quién la declara: el responsable del checklist donde ocurre.
 Cuándo: a tiempo, en cuanto se decide no cumplir o se sabe que no se va a 
 cumplir. No después.
@@ -182,14 +185,14 @@ bien, generó fricción o quedó ambiguo, para que el estándar se ajuste con
 el uso real y no quede fijo desde su primera versión.
 
 Cómo se hace:
-Ir al tablero "Estándar Desarrollo de Iniciativas" y dejar el reporte o 
-mejora en "Comentarios y actividad" de este estándar, etiquetando a 
-<responsables de los checklists>. No requiere un formulario ni una 
-instancia formal aparte.
+En la tarjeta de seguimiento de este estándar, en el tablero "Estándar
+Desarrollo de Iniciativas", se agrega una "Solicitud de mejora": qué no
+funcionó y qué se podría mejorar. Va junto a las desviaciones; no es un
+paso más.
 
-El estándar se revisa formalmente cada 3 meses, o antes si se acumulan 3 
-o más comentarios similares sobre el mismo punto — lo que ocurra primero. 
-La revisión toma esos comentarios acumulados y decide si el estándar 
+El estándar se revisa formalmente cada 3 meses, o antes si se acumulan 3
+o más solicitudes de mejora similares sobre el mismo punto — lo que ocurra
+primero. La revisión toma esas solicitudes y decide si el estándar
 necesita una nueva versión.
 
 ═══════════════════════════════════════════════════════════════════════════════
